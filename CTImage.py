@@ -20,15 +20,6 @@ class CTImage(Dataset):
         self.quarter_files = sorted(glob.glob(os.path.join(self.quarter_dose,"*","*.png")))
         self.full_files = sorted(glob.glob(os.path.join(self.full_dose,"*","*.png")))
 
-    def group_files(files):
-        file_dict = defaultdict(list)
-        pattern = re.compile(r'L(\d+)_QD_(\d+)_.*')
-        for file in files:
-            match = pattern.search(file)
-            if match:
-                pid = match.group(1)
-                file_dict[pid].append(file)
-        return file_dict
 
     def __len__(self):
         return len(self.quarter_files)
